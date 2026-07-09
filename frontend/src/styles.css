@@ -1,0 +1,581 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'BIZ UDPGothic', Meiryo,
+    'Noto Sans JP', sans-serif;
+  font-size: 14px;
+  color: #1f2937;
+  background: #f8fafc;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+/* ---------- サイドバー ---------- */
+
+.sidebar {
+  width: 360px;
+  flex: 0 0 360px;
+  overflow-y: auto;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 16px;
+}
+
+.app-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: #111827;
+}
+
+.mode-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.mode-tab {
+  flex: 1;
+  padding: 7px 2px;
+  font-size: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #f9fafb;
+  color: #374151;
+  cursor: pointer;
+}
+
+.mode-tab:hover {
+  background: #f3f4f6;
+}
+
+.mode-tab.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panel-desc {
+  margin: 0;
+  color: #4b5563;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 8px 0 2px;
+  padding-top: 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.subsection-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 8px 0 2px;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.muted {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.note,
+.hint {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.hint {
+  background: #f0f7ff;
+  border: 1px solid #dbeafe;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.error-text {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.error-text.global {
+  margin-bottom: 10px;
+}
+
+.loading-text {
+  color: #2563eb;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* ---------- フォーム ---------- */
+
+input[type='text'],
+input[type='number'],
+select {
+  font: inherit;
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: inherit;
+  width: 100%;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid #bfdbfe;
+  border-color: #60a5fa;
+}
+
+button {
+  font: inherit;
+  padding: 6px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #f9fafb;
+  color: #374151;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button:hover:not(:disabled) {
+  background: #f3f4f6;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button.primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 8px 12px;
+}
+
+button.primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+button.mini {
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+button.danger {
+  color: #b91c1c;
+}
+
+button.danger:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.row {
+  display: flex;
+  gap: 6px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.field > span {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.field-row {
+  display: flex;
+  gap: 8px;
+}
+
+.field-row .field {
+  flex: 1;
+}
+
+.radio-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.radio-row label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.radio-row label.disabled {
+  color: #9ca3af;
+  cursor: default;
+}
+
+.coords {
+  font-size: 12px;
+  background: #f3f4f6;
+  padding: 3px 6px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+/* ---------- 凡例 ---------- */
+
+.legend-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex: 0 0 auto;
+  vertical-align: -2px;
+}
+
+.legend-swatch.small {
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+}
+
+.legend-count {
+  margin-left: auto;
+}
+
+/* ---------- シナリオ・路線リスト ---------- */
+
+.scenario-list,
+.line-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scenario-item,
+.line-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 4px 6px;
+  background: #fcfcfd;
+}
+
+.scenario-item.selected,
+.line-item.editing {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.scenario-name,
+.line-select {
+  flex: 1;
+  text-align: left;
+  border: none;
+  background: none;
+  padding: 4px 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scenario-name:hover,
+.line-select:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.scenario-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.add-line {
+  align-self: flex-start;
+}
+
+.line-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fafafa;
+}
+
+.save-indicator {
+  font-size: 12px;
+}
+
+.save-indicator.saved {
+  color: #059669;
+}
+
+.save-indicator.saving,
+.save-indicator.pending {
+  color: #d97706;
+}
+
+.save-indicator.error {
+  color: #b91c1c;
+}
+
+/* ---------- カラーパレット ---------- */
+
+.palette {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.swatch {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 6px;
+  border: 2px solid transparent;
+}
+
+.swatch.selected {
+  border-color: #111827;
+  box-shadow: 0 0 0 2px #ffffff inset;
+}
+
+/* ---------- 駅リスト ---------- */
+
+.station-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.station-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.station-index {
+  flex: 0 0 20px;
+  text-align: right;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.snap-badge {
+  flex: 0 0 auto;
+  font-size: 10px;
+  color: #ffffff;
+  background: #059669;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+/* ---------- 等時圏サマリー ---------- */
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.summary-table {
+  border-collapse: collapse;
+  font-size: 12px;
+  width: 100%;
+}
+
+.summary-table th,
+.summary-table td {
+  border: 1px solid #e5e7eb;
+  padding: 4px 6px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.summary-table thead th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+
+.summary-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-table .delta {
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+/* ---------- 経路結果 ---------- */
+
+.route-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.route-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+  background: #ffffff;
+}
+
+.route-card.grey {
+  background: #fafafa;
+}
+
+.route-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.route-total {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.route-total-unit {
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 2px;
+  color: #6b7280;
+}
+
+.leg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.leg-item {
+  border-left: 4px solid #9ca3af;
+  padding: 4px 8px;
+  font-size: 13px;
+  background: #f9fafb;
+  border-radius: 0 4px 4px 0;
+}
+
+.route-diff {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.route-diff.faster {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.route-diff.slower {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* ---------- 地図 ---------- */
+
+.map-area {
+  flex: 1;
+  position: relative;
+  min-width: 0;
+}
+
+.map-container {
+  position: absolute;
+  inset: 0;
+}
+
+.map-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  background: #eef2f7;
+}
+
+.station-popup {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.station-popup span {
+  color: #6b7280;
+}
